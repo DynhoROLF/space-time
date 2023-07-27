@@ -1,31 +1,11 @@
 import React, { useEffect } from 'react'
-import { styled } from 'nativewind'
 import { useRouter } from 'expo-router'
-import { StatusBar } from 'expo-status-bar'
 import * as SecureStore from 'expo-secure-store'
 import { useAuthRequest, makeRedirectUri } from 'expo-auth-session'
-import {
-  ImageBackground,
-  View,
-  Text,
-  TouchableOpacity,
-  Linking,
-} from 'react-native'
+import { Text, TouchableOpacity, Linking, View } from 'react-native'
 
-import {
-  useFonts,
-  Roboto_400Regular,
-  Roboto_700Bold,
-} from '@expo-google-fonts/roboto'
-
-import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
-
-import blurBg from '../src/assets/blurBg.png'
-import Stripes from '../src/assets/stripes.svg'
 import Logo from '../src/assets/logo-mobile.svg'
 import { api } from '../src/lib/api'
-
-const StyledStripes = styled(Stripes)
 
 const discovery = {
   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
@@ -36,12 +16,6 @@ const discovery = {
 
 export default function App() {
   const router = useRouter()
-
-  const [hasLoadedFonts] = useFonts({
-    Roboto_400Regular,
-    Roboto_700Bold,
-    BaiJamjuree_700Bold,
-  })
 
   const [, response, signInWithGithub] = useAuthRequest(
     {
@@ -80,18 +54,8 @@ export default function App() {
     }
   }, [response])
 
-  if (!hasLoadedFonts) {
-    return null
-  }
-
   return (
-    <ImageBackground
-      source={blurBg}
-      imageStyle={{ position: 'absolute', left: '-100%' }}
-      className="relative flex-1 items-center bg-gray-900 px-8 py-10"
-    >
-      <StyledStripes className="absolute left-2" />
-
+    <View className="flex-1 items-center px-8 py-10">
       <View className="flex-1 items-center justify-center gap-6">
         <Logo />
 
@@ -134,8 +98,6 @@ export default function App() {
           Rocketseat
         </Text>
       </Text>
-
-      <StatusBar style="light" translucent />
-    </ImageBackground>
+    </View>
   )
 }
