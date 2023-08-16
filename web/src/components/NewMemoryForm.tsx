@@ -15,9 +15,9 @@ export function NewMemoryForm() {
 
     const formData = new FormData(event.currentTarget)
 
-    const fileToUpload = formData.get('coverURL')
+    const fileToUpload = formData.get('coverUrl')
 
-    let converUrl = ''
+    let coverUrl = ''
 
     if (fileToUpload) {
       const uploadFormData = new FormData()
@@ -25,7 +25,7 @@ export function NewMemoryForm() {
 
       const uploadResponse = await api.post('/upload', uploadFormData)
 
-      converUrl = uploadResponse.data.fileUrl
+      coverUrl = uploadResponse.data.fileUrl
     }
 
     const token = Cookie.get('token')
@@ -33,7 +33,7 @@ export function NewMemoryForm() {
     await api.post(
       '/memories',
       {
-        converUrl,
+        coverUrl,
         content: formData.get('content'),
         isPublic: formData.get('isPublic'),
       },
@@ -84,7 +84,7 @@ export function NewMemoryForm() {
 
       <button
         type="submit"
-        className="inline-block rounded-md bg-green-500 px-5 py-3 font-alt text-sm uppercase text-black"
+        className="inline-block self-end rounded-full bg-green-500 px-5 py-3 font-alt text-sm uppercase leading-none text-black hover:bg-green-600"
       >
         Salvar
       </button>
