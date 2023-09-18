@@ -33,12 +33,12 @@ This project was developed with the following technologies:
 - JS-Cookie
 
 # install dependecies 
-$ npm i
-$ expo install 
+- npm i
+- expo install 
 
 # run app
-$ npm run dev
-$ expo start
+- npm run dev
+- expo start
 
 ---
 
